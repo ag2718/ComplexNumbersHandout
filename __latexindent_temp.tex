@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\usepackage{color}
+\usepackage{tcolorbox}
+\newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
+
+\titleformat{\section}
+{\boldfont\Large\bfseries}
+{\color{red}§\thesection}{1em}{}
+
+\title{Applications of Complex Numbers}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+why not working?
+now is this workign?
+
+\textbf{Complex numbers} are traditionally defined in the form \[ a + bi \] where $a$ and $b$ are real numbers and $i = \sqrt{-1}$. Defining the square roots of negative numbers in this way has allowed mathemeticians to not only solve a variety of problems but also create and explore completely new fields of math. Note that defining $\sqrt{-1}$ allows the definition of other negative square roots as well: $\sqrt{-12} = \sqrt{12 \cdot -1} = \sqrt{12}i = 2\sqrt{3}i$.
+\newline\newline
+There are several instances in which complex numbers can allow us to solve problems that would otherwise be impossible. For example, consider the equation \[ x^2 + 2x + 2. \] Completing the square and solving, we get the result \[ x = -1 \pm \sqrt{-1} = -1 \pm i. \] 
+
+
+However, one might ask the question: \textit{what is the point of this?} After all, it seems extremely abstract and inapplicable to physical sciences and real life at first. For example, what physical significance would the square root of a negative number even have? Although it may seem that complex numbers are abstract, they actually have extremely useful and interesting applications, some of which we will explore in this handout. 
+\newline\newline
+\textbf{Exercise:} Find a general rule for the value of $i^n$, where $n \in {0, 1, 2, 3, ...}$
+
+\section{Polar Representation}
+
+In order to use them more effectively, we need to establish a new mathematical representation of complex numbers: polar form. Essentially, instead of the form $a + bi$, we will define all complex numbers in the form \[re^{i\theta}\] where $r$ and $\theta$ are also real constants that we will explore the significance of.
+
+Consider the following diagram of the complex plane:
+
+We can define $r$ as the distance of the point on the complex plane to the origin and $\theta$ as the angle of rotation fromthe x-axis. Notice that this is directly analogous to polar coordinates on the real plane.
+\newline\newline
+\textbf{Example problem: } For what values of $\theta$ is $re^{i\theta}$ a real number? \\
+\begin{mybox}
+\textbf{Solution: } From the diagram, real numbers lie along the horizontal axis, meaning that they have no component along the vertical imaginary axis. Thus, $re^{i\theta}$ is a real number for $\theta = \pi n$, where $n \in \mathbb{R}$.
+\end{mybox}
+\textbf{Example problem: } What is the value of $\sqrt{i}$?
+\newline\newline
+\textbf{Solution: } This problem will be much easier if we convert $i$ into the polar form. Note that the distance from the origin $r = 1$, while the angle of rotation from the x-axis $\theta = \pi/2 $. Thus, we have $i = e^{i\pi/2}$. Now, we take the square root of this expression: $\sqrt{i} = \sqrt{e^{i\pi/2}} = e^{i\pi/4}$.
+\newline\newline
+\textbf{Exercise: } Find the polar representations of the following numbers ($C$ is always a real constant):
+\begin{enumerate}
+    \item $Ci$
+    \item $i^C$
+    \item $C$
+\end{enumerate}
+\textbf{Exercise:} Given the general form $re^{i\theta}$, how would you convert it into a form $a + bi$? Hint: use the diagram above to find a relation. This relationship is called \textbf{Euler's Formula}.
+
+\section{Trigonometry with Complex Numbers}
+As you found in the exercise for the last section, \textbf{Euler's Formula} states that \[ e^{i\theta} = i\sin\theta + \cos\theta. \] In fact, we can utilize this formula to prove many trigonometric identities as well as solve some interesting problems.
+\newline\newline
+\textbf{Example: } Prove the following: \[ \sin(a + b) = \sin(a)\cos(b) + \sin(b)\cos(a). \] 
+\newline
+\textbf{Solution: } This is the famous sum identity for the sine function. In order to prove this using complex exponentials, what we essentially need to do is find the imaginary part of the expression $e^{i(a + b)}$, since the expression $a + b$ is the argument of the sine function and can be directly substituted as $\theta$ for the polar imaginary number.
+\begin{align*}
+    e^{i(a + b)} &= e^{ia} \cdot e^{ib} \\
+                 &= (i\sin(a) + \cos(a))(i\sin(b) + \cos(b)) \\
+                 &= i^2\sin(a)\sin(b) + i\sin(a)\cos(b) + i\sin(b)\cos(a) + \cos(a)\cos(b) \\
+                 &= i(\sin(a)\cos(b) + \sin(b)\cos(a)) + (\cos(a)\cos(b) - \sin(a)\sin(b))
+\end{align*}
+Looking at the imaginary part of this expression, we have indeed proved that $\sin(a + b) = \sin(a)\cos(b) + \sin(b)\cos(a)$. In fact, we have actually proved another common trigonometric identity at the same time, which is that \[\cos(a + b) = \cos(a)\cos(b) - \sin(a)\sin(b)!\] This can be observed by noticing that the expression for cosine is just the real part of the product, which can be noted from the form of Euler's Formula.
+
+This proof is one of many examples where the use of complex numbers can make inherently real problems extremely simple, as a proof without this use of complex exponentials would require geometry, as compared to simply expanding the product of two binomials.
+\newline\newline
+\textbf{Example: } Represent the sine function using only complex exponentials.
+\newline\newline
+\textbf{Solution: } The key insight for this problem is that we need to somehow eliminate the cosine portion of Euler's formula, since we cannot have that in our final result. An interesting way to do this is by exploiting its even symmetry. Consider the following:
+\begin{align*}
+    e^{i\theta} - e^{-i\theta} &= i\sin{\theta} + \cos{\theta} - (i\sin{-\theta} + \cos{-\theta}) \\
+                               &= i\sin{\theta} + \cos{\theta} + i\sin{\theta} - \cos{\theta} \\
+                               &= 2i\sin{\theta}
+\end{align*}
+
+    Notice that since cosine is an even function, $\cos{\theta} = \cos{-\theta}$, so when we subtract two complex exponentials with opposite arguments, the cosines actually cancel out! Then, solving for $\sin{\theta}$, we simply have \[ \sin{\theta} = \frac{e^{i\theta} - e^{-i\theta}}{2i}. \] This is an extremely unique and interesting representation of the sine function that you might not have encountered before in a traditional approach to trigonometry!
+\newline\newline
+\textbf{Exercise: } Prove the following product to sum identity using complex exponentials: \[ \sin{a} + \sin{b} = 2\cos(\frac{a - b}{2})\sin(\frac{a + b}{2}) \] 
+\newline\newline
+\textbf{Exercise: } Now, let's look at a practical application of the identity above. Let's say there are two different waves on a string, described by the amplitude functions $A_1(x, t) = A_0\sin(kx - \omega t)$ and $A_2 = A_0\sin(kx + \omega t)$. When these waves are superimposed, what is the resulting pattern? Find its mathematical form as well as a qualitative description of how it behaves. This is called a \textbf{standing wave}. 
+
+\end{document}
